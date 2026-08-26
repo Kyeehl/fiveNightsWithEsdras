@@ -31,26 +31,32 @@ def canAiMove():
         return False
 
 def mapMove():
+    global animatronic_position
+    lastX, lastY = animatronic_position
+    map[lastX][lastY] = 0
     x, y = animatronic_position
-    if y > 0:
-        y -= 1
-        map[x][y] = 1
-    elif x == 0 and y == 0:
-        x += 1
-        map[x][y] = 1
-    elif x > 0:
-        x += 1
-        map[x][y] = 1
-    if x == len(map):
+    if x == map.shape[0] - 1:
         x = 0
         y = 0
         map[x][y] = 1
+    if y > 0:
+        y -= 1
+        map[x][y] = 1
+    elif y == 0:
+        x += 1
+        map[x][y] = 1
+        if x > 0:
+            map[x][y] = 1
+    animatronic_position = (x, y)
+    print(x, y)
         
-
 def game_loop():
-    while True:
-        mapMove()
+    cont = 0
+    while cont <= 10:
         print(map)
-        time.sleep(5000)
+        mapMove()
+        time.sleep(2)
+        cont += 1
 
+print(map.shape)
 game_loop()
