@@ -21,7 +21,6 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def moveOpportunity():
-    time.sleep(2)
     move = canAiMove()
     if move:
         return True
@@ -29,6 +28,9 @@ def moveOpportunity():
         return False
 
 def canAiMove():
+    global isAtEndMap
+    if isAtEndMap:
+        return False
     ai_move = random.randint(1, 20)
     if ai_move < ai_level:
         return True
@@ -76,7 +78,7 @@ def Full_movement():
 
 def game_loop():
     while True:
-        time.sleep(3)
+        time.sleep(1)
         clear_screen()
         Full_movement()
         print(map)
