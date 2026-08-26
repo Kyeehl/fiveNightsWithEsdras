@@ -32,28 +32,34 @@ def canAiMove():
 
 def mapMove():
     global animatronic_position
-    lastX, lastY = animatronic_position
-    map[lastX][lastY] = 0
     x, y = animatronic_position
-    if x == map.shape[0] - 1:
-        x = 0
-        y = 0
-        map[x][y] = 1
-    if y > 0:
-        y -= 1
-        map[x][y] = 1
-    elif y == 0:
-        x += 1
-        map[x][y] = 1
-        if x > 0:
-            map[x][y] = 1
-    animatronic_position = (x, y)
     print(x, y)
+    if x == map.shape[0] - 1:
+        print("End of the map reached")
+    if x != map.shape[0] - 1:
+        lastX, lastY = animatronic_position
+        map[lastX][lastY] = 0
+        if y > 0:
+            y -= 1
+            map[x][y] = 1
+        elif y == 0:
+            x += 1
+            map[x][y] = 1
+            if x > 0:
+                map[x][y] = 1
+    animatronic_position = (x, y)
+
+def checkDoor():
+    global animatronic_position
+    x, y = animatronic_position
+    if y + 1 < map.shape[1] and map[x][y + 1] == 4:
+        print("AI is at the door")
         
 def game_loop():
     cont = 0
     while cont <= 10:
         print(map)
+        checkDoor()
         mapMove()
         time.sleep(2)
         cont += 1
