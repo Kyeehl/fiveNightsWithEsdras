@@ -70,7 +70,7 @@ def game_loop():
         print(map)
 
 # 1 - animatronic, 2 - player, 3 - wall, 4 - door, 0 - empty space
-map = np.array([[0, 0, 1, 0, 0],
+map = np.array([[0, 0, 0, 0, 0],
                 [0, 3, 3, 3, 0],
                 [0, 3, 3, 3, 0],
                 [0, 3, 3, 3, 0],
