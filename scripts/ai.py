@@ -3,20 +3,6 @@ import time
 import numpy as np
 import os
 
-# 1 - animatronic, 2 - player, 3 - wall, 4 - door, 0 - empty space
-
-map = np.array([[0, 0, 1, 0, 0],
-                [0, 3, 3, 3, 0],
-                [0, 3, 3, 3, 0],
-                [0, 3, 3, 3, 0],
-                [0, 4, 2, 4, 0]])
-
-ai_level = 10
-ai_move = 0
-canAttack = False
-animatronic_position = (0, 2)
-isAtEndMap = False
-
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -82,5 +68,18 @@ def game_loop():
         clear_screen()
         Full_movement()
         print(map)
-print(map.shape)
+
+# 1 - animatronic, 2 - player, 3 - wall, 4 - door, 0 - empty space
+map = np.array([[0, 0, 1, 0, 0],
+                [0, 3, 3, 3, 0],
+                [0, 3, 3, 3, 0],
+                [0, 3, 3, 3, 0],
+                [0, 4, 2, 4, 0]])
+
+ai_level = 10
+ai_move = 0
+canAttack = False
+animatronic_position = (0, 2)
+isAtEndMap = False
+
 game_loop()
